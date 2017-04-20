@@ -1,7 +1,7 @@
 {
     "name"              : "waltersCeres",
     "marketplaceName"   : {"de":"waltersCeres","en":"waltersCeres"},
-    "namespace"         : "myown",
+    "namespace"         : "Ceres",
     "type"              : "template",
     "version"           : "1.0.0",
     "license"           : "AGPL-3.0",
@@ -16,7 +16,7 @@
     "authorIcon"        : "icon_author_xs.png",
     "email"             : "",
     "phone"             : "",
-    "serviceProvider"   : "myown\\Providers\\TemplateServiceProvider",
+    "serviceProvider"   : "Ceres\\Providers\\TemplateServiceProvider",
     "containers"        : [
         {
             "key"           : "Template.Style",
