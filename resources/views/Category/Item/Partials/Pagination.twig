@@ -1,8 +1,8 @@
-{% set rowsPerPage = config('Ceres.pagination.rowsPerPage') | split(', ') %}
-{% set columnsPerPage = config('Ceres.pagination.columnsPerPage') %}
+{% set rowsPerPage = config('Walcer.pagination.rowsPerPage') | split(', ') %}
+{% set columnsPerPage = config('Walcer.pagination.columnsPerPage') %}
 {% set itemsPerPage = rowsPerPage[0] * columnsPerPage %}
 {% set itemsPerPage     = request.get("items") | default( itemsPerPage ) %}
-{% set itemSorting      = request.get("sorting") | default( config('Ceres.sort.defaultSorting') ) %}
+{% set itemSorting      = request.get("sorting") | default( config('Walcer.sort.defaultSorting') ) %}
 {% set query            = { 'items_per_page' : itemsPerPage, 'itemSorting' : itemSorting } %}
 
 {% set page             = paginatedResult.getPage() %}
@@ -22,7 +22,7 @@
             <!-- ./PREV LINK -->
 
             <!-- FIRST PAGE LINK -->
-            {% if page > 2 and config('Ceres.pagination.showFirstPage') == "true" %}
+            {% if page > 2 and config('Walcer.pagination.showFirstPage') == "true" %}
                 <li class="page-item">
                     <a class="page-link" href="?{{ query | merge({'page' : 1 }) | url_encode }}">1</a>
                 </li>
@@ -61,7 +61,7 @@
             <!-- ./PAGINATION -->
 
             <!-- LAST PAGE LINK -->
-            {% if pageMax > 3 and page < pageMax-1 and config('Ceres.pagination.showLastPage') == "true" %}
+            {% if pageMax > 3 and page < pageMax-1 and config('Walcer.pagination.showLastPage') == "true" %}
                 <li class="page-item page-link">...</li>
                 <li class="page-item">
                     <a class="page-link" href="?{{ query | merge({'page' : pageMax }) | url_encode }}">{{ pageMax }}</a>

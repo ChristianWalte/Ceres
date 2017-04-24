@@ -1,5 +1,5 @@
 <?php
-namespace Ceres\Providers;
+namespace Walcer\Providers;
 
 
 use IO\Extensions\Functions\Partial;
@@ -12,8 +12,8 @@ use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ConfigRepository;
 
 /**
- * Class TemplateServiceProvider
- * @package Ceres\Providers
+ * Class TemplateServiceProvider‚
+ * @package Walcer\Providers
  */
 class TemplateServiceProvider extends ServiceProvider
 {
@@ -50,25 +50,25 @@ class TemplateServiceProvider extends ServiceProvider
         $twig->addExtension('Twig_Extension_StringLoader');
 
         $eventDispatcher->listen('IO.tpl.*', function (TemplateContainer $templateContainer) {
-                $templateContainer->setTemplate('Ceres::' . self::$templateKeyToViewMap[$templateContainer->getTemplateKey()]);
+                $templateContainer->setTemplate('Walcer::' . self::$templateKeyToViewMap[$templateContainer->getTemplateKey()]);
 
         }, self::EVENT_LISTENER_PRIORITY);
 
         // provide mapped category IDs - DEPRECATED?
         $eventDispatcher->listen('init.categories', function (CategoryMap $categoryMap) use (&$config) {
             $categoryMap->setCategoryMap(array(
-                CategoryKey::HOME => $config->get("Ceres.global.category.home"),
-                CategoryKey::PAGE_NOT_FOUND => $config->get("Ceres.global.category.page_not_found"),
-                CategoryKey::ITEM_NOT_FOUND => $config->get("Ceres.global.category.item_not_found")
+                CategoryKey::HOME => $config->get("Walcer.global.category.home"),
+                CategoryKey::PAGE_NOT_FOUND => $config->get("Walcer.global.category.page_not_found"),
+                CategoryKey::ITEM_NOT_FOUND => $config->get("Walcer.global.category.item_not_found")
             ));
 
         }, self::EVENT_LISTENER_PRIORITY);
 
         $eventDispatcher->listen('IO.init.templates', function (Partial $partial) {
-            $partial->set('head', 'Ceres::PageDesign.Partials.Head');
-            $partial->set('header', 'Ceres::PageDesign.Partials.Header.Header');
-            $partial->set('footer', 'Ceres::PageDesign.Partials.Footer');
-            $partial->set('page-design', 'Ceres::PageDesign.PageDesign');
+            $partial->set('head', 'Walcer::PageDesign.Partials.Head');
+            $partial->set('header', 'Walcer::PageDesign.Partials.Header.Header');
+            $partial->set('footer', 'Walcer::PageDesign.Partials.Footer');
+            $partial->set('page-design', 'Walcer::PageDesign.PageDesign');
 
         }, self::EVENT_LISTENER_PRIORITY);
     }

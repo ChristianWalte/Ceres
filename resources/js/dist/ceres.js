@@ -36410,7 +36410,7 @@ Vue.component("variation-select", {
                     {
                         // get variation data from remote
                         ApiService
-                            .get("/rest/io/variations/" + variationId, {template: "Ceres::Item.SingleItem"})
+                            .get("/rest/io/variations/" + variationId, {template: "Walcer::Item.SingleItem"})
                             .done(function(response)
                             {
                                 // store received variation data for later reuse
@@ -36817,7 +36817,7 @@ Vue.component("item-search", {
             $(".search-input").autocomplete({
                 serviceUrl: "/rest/io/item/search/autocomplete",
                 paramName: "query",
-                params: {template: "Ceres::ItemList.Components.ItemSearch"},
+                params: {template: "Walcer::ItemList.Components.ItemSearch"},
                 width: $(".search-box-shadow-frame").width(),
                 zIndex: 1070,
                 maxHeight: 310,
@@ -37681,7 +37681,7 @@ var ApiService = require("services/ApiService");
                 var jsonEncodedOrder = JSON.stringify(order);
 
                 ApiService
-                    .get("/rest/io/template?template=Ceres::Checkout.OrderDetails&params[orderData]=" + jsonEncodedOrder)
+                    .get("/rest/io/template?template=Walcer::Checkout.OrderDetails&params[orderData]=" + jsonEncodedOrder)
                     .done(function(response)
                     {
                         this.isLoading = false;
@@ -39053,7 +39053,7 @@ module.exports = (function($)
 
             var url = searchParams.categoryId ? "/rest/io/category" : "/rest/io/item/search";
 
-            searchParams.template = "Ceres::ItemList.ItemListView";
+            searchParams.template = "Walcer::ItemList.ItemListView";
 
             _setIsLoading(true);
 
@@ -40938,7 +40938,7 @@ module.exports =
 var init = (function($, window, document)
 {
 
-    function CeresMain()
+    function WalcerMain()
     {
 
         var menu = $("#mainNavbarCollapsable");
@@ -41145,7 +41145,7 @@ var init = (function($, window, document)
         }
     }
 
-    window.CeresMain = new CeresMain();
+    window.WalcerMain = new WalcerMain();
 
 })(jQuery, window, document);
 

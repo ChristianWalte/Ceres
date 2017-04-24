@@ -4,23 +4,23 @@
         {% autoescape false %}
             {% set gtcContent %}
                 <a href="/terms-conditions" target="_blank">
-                    <strong>{{ trans("Ceres::Template.generalGtc") }}</strong>
+                    <strong>{{ trans("Walcer::Template.generalGtc") }}</strong>
                 </a>
             {% endset %}
 
             {% set cancellationContent %}
                 <a href="/cancellation-rights" target="_blank">
-                    <strong>{{ trans("Ceres::Template.generalCancellationRight") }}</strong>
+                    <strong>{{ trans("Walcer::Template.generalCancellationRight") }}</strong>
                 </a>
             {% endset %}
 
             {% set policyContent %}
                 <a href="/privacy-policy" target="_blank">
-                    <strong>{{ trans("Ceres::Template.generalPrivacyPolicy") }}</strong>
+                    <strong>{{ trans("Walcer::Template.generalPrivacyPolicy") }}</strong>
                 </a>
             {% endset %}
 
-            {{ trans("Ceres::Template.generalChooseOur", {"gtc": gtcContent, "cancellation": cancellationContent, "policy": policyContent}) }}
+            {{ trans("Walcer::Template.generalChooseOur", {"gtc": gtcContent, "cancellation": cancellationContent, "policy": policyContent}) }}
         {% endautoescape %}
     </label>
 </script>

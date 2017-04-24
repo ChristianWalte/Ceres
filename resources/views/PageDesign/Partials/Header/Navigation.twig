@@ -1,7 +1,7 @@
-{% import "Ceres::Category.Macros.CategoryTree" as Tree %}
-{% set companyLogo  = config("Ceres.header.company_logo") %}
+{% import "Walcer::Category.Macros.CategoryTree" as Tree %}
+{% set companyLogo  = config("Walcer.header.company_logo") %}
 {% set lang         = services.sessionStorage.getLang() %}
-{% set showHeaderNavBar = config("Ceres.header.show_navbars") %}
+{% set showHeaderNavBar = config("Walcer.header.show_navbars") %}
 
 <nav class="navbar">
       <div class="container-max">
@@ -11,7 +11,7 @@
                      {% if ('http' in companyLogo) or ('layout/' in companyLogo) %}
                          <img src="{{ companyLogo }}" class="img-fluid"/>
                      {% else %}
-                        <img src="{{ plugin_path('Ceres') }}/{{ companyLogo }}" class="img-fluid"/>
+                        <img src="{{ plugin_path('Walcer') }}/{{ companyLogo }}" class="img-fluid"/>
                      {% endif %}
                  </a>
 
@@ -22,7 +22,7 @@
 
             <div id="mainNavbarCollapsable">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a>{{ trans("Ceres::Template.generalBigAll") }}</a></li>
+                    <li class="breadcrumb-item"><a>{{ trans("Walcer::Template.generalBigAll") }}</a></li>
                     <li class="btnClose"></li>
                 </ul>
                 {% if showHeaderNavBar == "top" or showHeaderNavBar == "both" or not services.template.isCategory() %}

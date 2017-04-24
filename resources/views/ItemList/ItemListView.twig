@@ -5,27 +5,27 @@
     {% set page = request.get("page") %}
 {% endif %}
 
-{% set rowsPerPage = config('Ceres.pagination.rowsPerPage') | split(', ') %}
-{% set columnsPerPage = config('Ceres.pagination.columnsPerPage') %}
+{% set rowsPerPage = config('Walcer.pagination.rowsPerPage') | split(', ') %}
+{% set columnsPerPage = config('Walcer.pagination.columnsPerPage') %}
 {% set itemsPerPage = rowsPerPage[0] * columnsPerPage %}
 {% if request.get("items") %}
     {% set itemsPerPage = request.get("items") %}
 {% endif %}
 
-{% set sorting = config("Ceres.sort.defaultSorting") %}
+{% set sorting = config("Walcer.sort.defaultSorting") %}
 {% if request.get("sorting") %}
     {% set sorting = request.get("sorting") %}
 {% endif %}
 
-{% set paginatedResult = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.search, {'query': request.get("query"), 'page': page, 'items': itemsPerPage, 'sorting':  sorting}) %}
+{% set paginatedResult = services.itemLoader.loadForTemplate('Walcer::ItemList.ItemListView', itemLoaderPresets.search, {'query': request.get("query"), 'page': page, 'items': itemsPerPage, 'sorting':  sorting}) %}
 {% block PageBody %}
 
-    {{ component( "Ceres::ItemList.Components.ItemList" ) }}
-    {{ component( "Ceres::ItemList.Components.ItemListSorting" ) }}
-    {{ component( "Ceres::ItemList.Components.ItemsPerPage" ) }}
-    {{ component( "Ceres::ItemList.Components.Pagination" ) }}
-    {{ component( "Ceres::ItemList.Components.Filter.ItemFilterList") }}
-    {{ component( "Ceres::ItemList.Components.Filter.ItemFilterTagList") }}
+    {{ component( "Walcer::ItemList.Components.ItemList" ) }}
+    {{ component( "Walcer::ItemList.Components.ItemListSorting" ) }}
+    {{ component( "Walcer::ItemList.Components.ItemsPerPage" ) }}
+    {{ component( "Walcer::ItemList.Components.Pagination" ) }}
+    {{ component( "Walcer::ItemList.Components.Filter.ItemFilterList") }}
+    {{ component( "Walcer::ItemList.Components.Filter.ItemFilterTagList") }}
 
     <resource name="itemList" :data="{{ paginatedResult | json_encode }} || {}"></resource>
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
@@ -43,11 +43,11 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="list-wrapper">
-                            <item-list-sorting template="#vue-item-list-sorting" :sort-data="{{ config("Ceres.sort.data") | split(', ') | json_encode() }}"></item-list-sorting>
+                            <item-list-sorting template="#vue-item-list-sorting" :sort-data="{{ config("Walcer.sort.data") | split(', ') | json_encode() }}"></item-list-sorting>
                             <items-per-page
                                 template="#vue-items-per-page"
-                                :columns-per-page="{{ config("Ceres.pagination.columnsPerPage") | json_encode() }}"
-                                :rows-per-page="{{ config("Ceres.pagination.rowsPerPage") | split(', ') | json_encode() }}"></items-per-page>
+                                :columns-per-page="{{ config("Walcer.pagination.columnsPerPage") | json_encode() }}"
+                                :rows-per-page="{{ config("Walcer.pagination.rowsPerPage") | split(', ') | json_encode() }}"></items-per-page>
                             <item-filter-list :facets="{{ paginatedResult.facets | json_encode }}"></item-filter-list>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
         <div class="list-controls m-b-3">
             <div class="col-xs-12">
                 <pagination template="#vue-pagination"></pagination>
-                {#{% include "Ceres::Category.Item.Partials.Pagination" with { 'paginatedResult': paginatedResult } %}#}
+                {#{% include "Walcer::Category.Item.Partials.Pagination" with { 'paginatedResult': paginatedResult } %}#}
             </div>
         </div>
 

@@ -1,12 +1,12 @@
 {% extends getPartial('page-design') %}
-{% import "Ceres::Category.Macros.CategoryTree" as Tree %}
+{% import "Walcer::Category.Macros.CategoryTree" as Tree %}
 
 {% set itemSort             = request.get("sorting") %}
 {% set orderBy              = itemSort[0] %}
-{% set variationShowType    = config("Ceres.item.variation_show_type") %}
+{% set variationShowType    = config("Walcer.item.variation_show_type") %}
 
-{% set rowsPerPage = config('Ceres.pagination.rowsPerPage') | split(', ') %}
-{% set columnsPerPage = config('Ceres.pagination.columnsPerPage') %}
+{% set rowsPerPage = config('Walcer.pagination.rowsPerPage') | split(', ') %}
+{% set columnsPerPage = config('Walcer.pagination.columnsPerPage') %}
 {% set itemsPerPage = rowsPerPage[0] * columnsPerPage %}
 
 {% if request.get("items") %}
@@ -14,7 +14,7 @@
 {% endif %}
 
 {% set categoryParams = {
-        'variationShowType' : config("Ceres.item.variation_show_type"),
+        'variationShowType' : config("Walcer.item.variation_show_type"),
         'itemsPerPage'      : request.get("items") | default( itemsPerPage ),
         'orderBy'           : itemSort,
         'facetParams'       : request.get("facets")
@@ -23,27 +23,27 @@
 
 {% set page = request.get("page") | default(1) %}
 
-{% set paginatedResult      = services.itemLoader.loadForTemplate('Ceres::ItemList.ItemListView', itemLoaderPresets.categoryList, {'categoryId':category.id, 'page':page, 'items':itemsPerPage, 'facets': facetParams, 'sorting': itemSort}) %}
+{% set paginatedResult      = services.itemLoader.loadForTemplate('Walcer::ItemList.ItemListView', itemLoaderPresets.categoryList, {'categoryId':category.id, 'page':page, 'items':itemsPerPage, 'facets': facetParams, 'sorting': itemSort}) %}
 
 {% set itemList             = paginatedResult.documents %}
-{% set paginationType       = config("Ceres.pagination.position") %}
+{% set paginationType       = config("Walcer.pagination.position") %}
 
 {% set lang         = services.sessionStorage.getLang() %}
 {% set categories = services.category.getNavigationTree("item", lang) %}
 
-{% set showHeaderNavBar = config("Ceres.header.show_navbars") %}
+{% set showHeaderNavBar = config("Walcer.header.show_navbars") %}
 
 {% block PageBody %}
 
-    {{ component( "Ceres::ItemList.Components.Filter.ItemFilterList") }}
-    {{ component( "Ceres::ItemList.Components.Filter.ItemFilterTagList") }}
-    {{ component( "Ceres::ItemList.Components.ItemList") }}
-    {{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
-    {{ component( "Ceres::ItemList.Components.ItemListSorting") }}
-    {{ component( "Ceres::ItemList.Components.ItemsPerPage") }}
-    {{ component( "Ceres::ItemList.Components.Pagination") }}
-    {{ component( "Ceres::Category.Components.CategorySideMenu") }}
-    {{ component( "Ceres::Category.Components.CategorySideMenuNode") }}
+    {{ component( "Walcer::ItemList.Components.Filter.ItemFilterList") }}
+    {{ component( "Walcer::ItemList.Components.Filter.ItemFilterTagList") }}
+    {{ component( "Walcer::ItemList.Components.ItemList") }}
+    {{ component( "Walcer::ItemList.Components.CategoryImageCarousel") }}
+    {{ component( "Walcer::ItemList.Components.ItemListSorting") }}
+    {{ component( "Walcer::ItemList.Components.ItemsPerPage") }}
+    {{ component( "Walcer::ItemList.Components.Pagination") }}
+    {{ component( "Walcer::Category.Components.CategorySideMenu") }}
+    {{ component( "Walcer::Category.Components.CategorySideMenuNode") }}
 
     <resource name="facetParams" :data="[]"></resource>
     <resource name="facets" :data="{{ paginatedResult.facets | json_encode }} || []"></resource>
@@ -61,11 +61,11 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="list-wrapper">
-                            <item-list-sorting template="#vue-item-list-sorting" :sort-data="{{ config("Ceres.sort.data") | split(', ') | json_encode() }}"></item-list-sorting>
+                            <item-list-sorting template="#vue-item-list-sorting" :sort-data="{{ config("Walcer.sort.data") | split(', ') | json_encode() }}"></item-list-sorting>
                             <items-per-page
                                 template="#vue-items-per-page"
-                                :columns-per-page="{{ config("Ceres.pagination.columnsPerPage") | json_encode() }}"
-                                :rows-per-page="{{ config("Ceres.pagination.rowsPerPage") | split(', ') | json_encode() }}"></items-per-page>
+                                :columns-per-page="{{ config("Walcer.pagination.columnsPerPage") | json_encode() }}"
+                                :rows-per-page="{{ config("Walcer.pagination.rowsPerPage") | split(', ') | json_encode() }}"></items-per-page>
                             <item-filter-list :facets="{{ paginatedResult.facets | json_encode }}"></item-filter-list>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
             {% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}
                 <div class="col-xs-3 hidden-md-down">
                     <div class="sidebar-categories">
-                        <div class="category-title">{{ trans("Ceres::Template.generalCategories") }}</div>
+                        <div class="category-title">{{ trans("Walcer::Template.generalCategories") }}</div>
                         <noscript>
                             {{ Tree.get_sidemenu(categories, "") }}
                         </noscript>
@@ -96,7 +96,7 @@
                 <ul id="twig-rendered-item-list" class="product-list row grid" v-is-loading-watcher>
                     {% for item in itemList %}
                         <li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if showHeaderNavBar == "side" or showHeaderNavBar == "both" %}4{% else %}3{% endif %}">
-                            {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
+                            {% include "Walcer::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
                         </li>
                     {% endfor %}
                 </ul>

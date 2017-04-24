@@ -1,12 +1,12 @@
 ![plentymarkets Logo](http://www.plentymarkets.eu/layout/pm/images/logo/plentymarkets-logo.jpg)
 
-# Ceres
+# Walcer
 
-This is the official **Ceres** plugin developed by plentymarkets. **Ceres** is the default template plugin for [plentymarkets 7](https://www.plentymarkets.eu/tour/) online stores.
+This is the official **Walcer** plugin developed by plentymarkets. **Walcer** is the default template plugin for [plentymarkets 7](https://www.plentymarkets.eu/tour/) online stores.
 
 ## Requirements
 
-This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). The [IO](https://github.com/plentymarkets/plugin-io) plugin is required to run the plentymarkets **Ceres** plugin.
+This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). The [IO](https://github.com/plentymarkets/plugin-io) plugin is required to run the plentymarkets **Walcer** plugin.
 
 ## Installing
 

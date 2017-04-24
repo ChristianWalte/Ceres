@@ -1,16 +1,16 @@
 {% extends getPartial('page-design') %}
-{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+{% import "Walcer::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
 {% block PageBody %}
 
-    {{ component( "Ceres::Customer.Components.AddressSelect.AddressSelect" ) }}
-    {{ component( "Ceres::Checkout.Components.AcceptGtcCheck" ) }}
-    {{ component( "Ceres::Checkout.Components.PaymentProviderSelect" ) }}
-    {{ component( "Ceres::Checkout.Components.ShippingProfileSelect" ) }}
-    {{ component( "Ceres::Checkout.Components.PlaceOrder" ) }}
-    {{ component( "Ceres::Basket.Components.Coupon" ) }}
-    {{ component( "Ceres::Basket.Components.BasketList" ) }}
-    {{ component( "Ceres::Basket.Components.BasketTotals" ) }}
+    {{ component( "Walcer::Customer.Components.AddressSelect.AddressSelect" ) }}
+    {{ component( "Walcer::Checkout.Components.AcceptGtcCheck" ) }}
+    {{ component( "Walcer::Checkout.Components.PaymentProviderSelect" ) }}
+    {{ component( "Walcer::Checkout.Components.ShippingProfileSelect" ) }}
+    {{ component( "Walcer::Checkout.Components.PlaceOrder" ) }}
+    {{ component( "Walcer::Basket.Components.Coupon" ) }}
+    {{ component( "Walcer::Basket.Components.BasketList" ) }}
+    {{ component( "Walcer::Basket.Components.BasketTotals" ) }}
     <div class="page-content checkout container-max">
         <resource
             name="checkout"
@@ -21,11 +21,11 @@
             name="checkoutValidation"
             :data="{ invoiceAddress: { showError: false }, paymentProvider: { showError: false }, shippingProfile: { showError: false }, gtc: { showError: false } }"></resource>
 
-        {% set overrideCheckout = LayoutContainer.show("Ceres::Checkout") %}
+        {% set overrideCheckout = LayoutContainer.show("Walcer::Checkout") %}
         {% if overrideCheckout|trim is empty %}
             <div class="row m-t-1">
                 <div class="col-xs-12 m-b-3">
-                    <h1 class="h4">{{ trans("Ceres::Template.orderCheckout") }}</h1>
+                    <h1 class="h4">{{ trans("Walcer::Template.orderCheckout") }}</h1>
                     <hr>
                 </div>
             </div>
@@ -34,70 +34,70 @@
                 <!-- ADDRESS SELECT -->
                 <div class="col-md-7">
                     <div id="registry-form-container" class="registry-form-container main-col" data-id="0" data-status="2">
-                        {% set overrideAddressLists = LayoutContainer.show("Ceres::Checkout.AddressLists") %}
+                        {% set overrideAddressLists = LayoutContainer.show("Walcer::Checkout.AddressLists") %}
                         {% if overrideAddressLists|trim is empty %}
-                            {% set overrideBillingAddress = LayoutContainer.show("Ceres::Checkout.BillingAddress") %}
+                            {% set overrideBillingAddress = LayoutContainer.show("Walcer::Checkout.BillingAddress") %}
                             {% if overrideBillingAddress|trim is empty %}
                                 <header class="m-b-1">
-                                <h3>{{ trans("Ceres::Template.orderInvoiceAddress") }}</h3>
+                                <h3>{{ trans("Walcer::Template.orderInvoiceAddress") }}</h3>
                                 </header>
 
-                                {{ LayoutContainer.show("Ceres::Checkout.BeforeBillingAddress") }}
+                                {{ LayoutContainer.show("Walcer::Checkout.BeforeBillingAddress") }}
                                 <div class="invoice-addresses-select">
                                     <invoice-address-select
                                             :address-list="{{ services.customer.getAddresses(1) | json_encode() }}"
                                             has-to-validate="true"
                                             :selected-address-id="{{ services.checkout.getBillingAddressId() }}"></invoice-address-select>
                                 </div>
-                                {{ LayoutContainer.show("Ceres::Checkout.AfterBillingAddress") }}
+                                {{ LayoutContainer.show("Walcer::Checkout.AfterBillingAddress") }}
                             {% else %}
                                 {{ overrideBillingAddress }}
                             {% endif %}
 
-                            {% set overrideShippingAddress = LayoutContainer.show("Ceres::Checkout.ShippingAddress") %}
+                            {% set overrideShippingAddress = LayoutContainer.show("Walcer::Checkout.ShippingAddress") %}
                             {% if overrideShippingAddress|trim is empty %}
                                 <header class="m-b-1">
-                                    <h3>{{ trans("Ceres::Template.orderShippingAddress") }}</h3>
+                                    <h3>{{ trans("Walcer::Template.orderShippingAddress") }}</h3>
                                 </header>
 
-                                {{ LayoutContainer.show("Ceres::Checkout.BeforeShippingAddress") }}
+                                {{ LayoutContainer.show("Walcer::Checkout.BeforeShippingAddress") }}
                                 <div class="shipping-addresses-select">
                                         <shipping-address-select :address-list="{{ services.customer.getAddresses(2) | json_encode() }}"
                                                                  :selected-address-id="{{ services.checkout.getDeliveryAddressId() }}"></shipping-address-select>
                                 </div>
-                                {{ LayoutContainer.show("Ceres::Checkout.AfterShippingAddress") }}
+                                {{ LayoutContainer.show("Walcer::Checkout.AfterShippingAddress") }}
                             {% else %}
                                 {{ overrideShippingAddress }}
                             {% endif %}
                         {% else %}
                             {{ overrideAddressLists }}
                         {% endif %}
-                        {% set overrideShippingProfiles = LayoutContainer.show("Ceres::Checkout.ShippingProfileList") %}
+                        {% set overrideShippingProfiles = LayoutContainer.show("Walcer::Checkout.ShippingProfileList") %}
                         {% if overrideShippingProfiles|trim is empty %}
                             <header class="m-b-1">
-                                <h3>{{ trans("Ceres::Template.orderShippingProfile") }}</h3>
+                                <h3>{{ trans("Walcer::Template.orderShippingProfile") }}</h3>
                             </header>
 
-                            {{ LayoutContainer.show("Ceres::Checkout.BeforeShippingProfileList") }}
+                            {{ LayoutContainer.show("Walcer::Checkout.BeforeShippingProfileList") }}
                             <div class="shipping-method-select">
                                 <shipping-profile-select template="#vue-shipping-profile-select"></shipping-profile-select>
                             </div>
-                            {{ LayoutContainer.show("Ceres::Checkout.AfterShippingProfileList") }}
+                            {{ LayoutContainer.show("Walcer::Checkout.AfterShippingProfileList") }}
                         {% else %}
                             {{ overrideShippingProfiles }}
                         {% endif %}
 
-                        {% set overridePaymentList = LayoutContainer.show("Ceres::Checkout.PaymentList") %}
+                        {% set overridePaymentList = LayoutContainer.show("Walcer::Checkout.PaymentList") %}
                         {% if overridePaymentList|trim is empty %}
                             <header class="m-b-1">
-                                <h3>{{ trans("Ceres::Template.orderPaymentMethod") }}</h3>
+                                <h3>{{ trans("Walcer::Template.orderPaymentMethod") }}</h3>
                             </header>
 
-                            {{ LayoutContainer.show("Ceres::Checkout.BeforePaymentList") }}
+                            {{ LayoutContainer.show("Walcer::Checkout.BeforePaymentList") }}
                             <div class="payment-method-select">
                                 <payment-provider-select template="#vue-payment-provider-select"></payment-provider-select>
                             </div>
-                            {{ LayoutContainer.show("Ceres::Checkout.AfterPaymentList") }}
+                            {{ LayoutContainer.show("Walcer::Checkout.AfterPaymentList") }}
                         {% else %}
                             {{ overridePaymentList }}
                         {% endif %}
@@ -114,9 +114,9 @@
                             <hr>
                             <coupon template="#vue-coupon"></coupon>
                             <hr>
-                            {{ LayoutContainer.show("Ceres::Checkout.BeforeBasketTotals") }}
-                            <basket-totals template="#vue-basket-totals" :config="{{ config("Ceres.basket.data")|split(', ')|json_encode() }}"></basket-totals>
-                            {{ LayoutContainer.show("Ceres::Checkout.AfterBasketTotals") }}
+                            {{ LayoutContainer.show("Walcer::Checkout.BeforeBasketTotals") }}
+                            <basket-totals template="#vue-basket-totals" :config="{{ config("Walcer.basket.data")|split(', ')|json_encode() }}"></basket-totals>
+                            {{ LayoutContainer.show("Walcer::Checkout.AfterBasketTotals") }}
                         </div>
                     </aside>
                 </div>
@@ -133,12 +133,12 @@
                                 <accept-gtc-check template="#vue-accept-gtc-check"></accept-gtc-check>
 
                             </div>
-                            {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
+                            {{ LayoutContainer.show("Walcer::Checkout.OptIns") }}
                         </div>
                         <div class="col-xs-12 col-sm-5">
-                            {{ LayoutContainer.show("Ceres::Checkout.BeforePlaceOrder") }}
+                            {{ LayoutContainer.show("Walcer::Checkout.BeforePlaceOrder") }}
                             <place-order template="#vue-place-order" target-continue="/place-order"></place-order>
-                            {{ LayoutContainer.show("Ceres::Checkout.AfterPlaceOrder") }}
+                            {{ LayoutContainer.show("Walcer::Checkout.AfterPlaceOrder") }}
                         </div>
                     </div>
                 </div>

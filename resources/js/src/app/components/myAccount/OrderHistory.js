@@ -68,7 +68,7 @@ var ApiService = require("services/ApiService");
                 var jsonEncodedOrder = JSON.stringify(order);
 
                 ApiService
-                    .get("/rest/io/template?template=Ceres::Checkout.OrderDetails&params[orderData]=" + jsonEncodedOrder)
+                    .get("/rest/io/template?template=Walcer::Checkout.OrderDetails&params[orderData]=" + jsonEncodedOrder)
                     .done(function(response)
                     {
                         this.isLoading = false;

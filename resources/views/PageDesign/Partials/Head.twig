@@ -2,20 +2,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+{% import "Walcer::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
-{% set logData = config("Ceres.log.data")|split(', ') %}
-{% set sortValues = config("Ceres.sort.data")|split(', ') %}
-{% set rowsPerPage = config('Ceres.pagination.rowsPerPage') | split(', ') %}
-{% set columnsPerPage = config('Ceres.pagination.columnsPerPage') %}
+{% set logData = config("Walcer.log.data")|split(', ') %}
+{% set sortValues = config("Walcer.sort.data")|split(', ') %}
+{% set rowsPerPage = config('Walcer.pagination.rowsPerPage') | split(', ') %}
+{% set columnsPerPage = config('Walcer.pagination.columnsPerPage') %}
 {% set itemsPerPage = rowsPerPage[0] * columnsPerPage %}
 
 <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
 
-<link rel="stylesheet" href="{{ plugin_path('Ceres') }}/css/ceres.css">
+<link rel="stylesheet" href="{{ plugin_path('Walcer') }}/css/ceres.css">
 
 <!-- Extend the existing style with a template -->
-{{ LayoutContainer.show("Ceres::Template.Style") }}
+{{ LayoutContainer.show("Walcer::Template.Style") }}
 
 <script>
     App = {

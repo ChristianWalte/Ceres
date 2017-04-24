@@ -1,7 +1,7 @@
 {
-    "name"              : "Ceres1",
-    "marketplaceName"   : {"de":"waltersCeres","en":"waltersCeres"},
-    "namespace"         : "Ceres",
+    "name"              : "Walcer",
+    "marketplaceName"   : {"de":"waltersWalcer","en":"waltersWalcer"},
+    "namespace"         : "Walcer",
     "type"              : "template",
     "version"           : "1.0.0",
     "license"           : "AGPL-3.0",
@@ -16,12 +16,12 @@
     "authorIcon"        : "icon_author_xs.png",
     "email"             : "",
     "phone"             : "",
-    "serviceProvider"   : "Ceres\\Providers\\TemplateServiceProvider",
+    "serviceProvider"   : "Walcer\\Providers\\TemplateServiceProvider",
     "containers"        : [
         {
             "key"           : "Template.Style",
             "name"          : "Template: Style",
-            "description"   : "Add style to Ceres with a theme plugin."
+            "description"   : "Add style to Walcer with a theme plugin."
         },
         {
             "key"           : "Script.Loader",

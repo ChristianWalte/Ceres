@@ -81,7 +81,7 @@ Vue.component("variation-select", {
                     {
                         // get variation data from remote
                         ApiService
-                            .get("/rest/io/variations/" + variationId, {template: "Ceres::Item.SingleItem"})
+                            .get("/rest/io/variations/" + variationId, {template: "Walcer::Item.SingleItem"})
                             .done(function(response)
                             {
                                 // store received variation data for later reuse

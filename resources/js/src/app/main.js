@@ -3,7 +3,7 @@
 var init = (function($, window, document)
 {
 
-    function CeresMain()
+    function WalcerMain()
     {
 
         var menu = $("#mainNavbarCollapsable");
@@ -210,6 +210,6 @@ var init = (function($, window, document)
         }
     }
 
-    window.CeresMain = new CeresMain();
+    window.WalcerMain = new WalcerMain();
 
 })(jQuery, window, document);

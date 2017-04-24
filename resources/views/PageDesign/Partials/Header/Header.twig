@@ -1,9 +1,9 @@
-{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+{% import "Walcer::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
-{{ component( "Ceres::Customer.Components.UserLoginHandler" ) }}
-{{ component( "Ceres::PageDesign.Components.ShippingCountrySelect" ) }}
-{{ component( "Ceres::PageDesign.Components.ShopLanguageSelect" ) }}
-{{ component( "Ceres::ItemList.Components.ItemSearch" ) }}
+{{ component( "Walcer::Customer.Components.UserLoginHandler" ) }}
+{{ component( "Walcer::PageDesign.Components.ShippingCountrySelect" ) }}
+{{ component( "Walcer::PageDesign.Components.ShopLanguageSelect" ) }}
+{{ component( "Walcer::ItemList.Components.ItemSearch" ) }}
 
 {% set lang = services.sessionStorage.getLang() %}
 
@@ -12,7 +12,7 @@
 <header class="top-bar">
     <div class="container-max">
         <div class="row">
-            {{ LayoutContainer.show("Ceres::Header.LeftSide") }}
+            {{ LayoutContainer.show("Walcer::Header.LeftSide") }}
 
             <ul id="controlsList" class="controls-list list-inline">
 
@@ -35,7 +35,7 @@
                        aria-controls="searchBox"
                        data-parent="#controlsList">
                         <i class="fa fa-search"></i>
-                        <span class="hidden-xs-down">{{ trans("Ceres::Template.generalSearchNoDot") }}</span>
+                        <span class="hidden-xs-down">{{ trans("Walcer::Template.generalSearchNoDot") }}</span>
                     </a>
                 </li>
 
@@ -48,14 +48,14 @@
             </ul>
         </div>
     </div>
-    {% include "Ceres::PageDesign.Partials.Header.Navigation" %}
+    {% include "Walcer::PageDesign.Partials.Header.Navigation" %}
 
 </header>
 
 
 <!-- breadcrumb -->
 {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
-    {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
+    {% include "Walcer::PageDesign.Partials.Header.Breadcrumb" %}
 {% endif %}
 
 <div class="container-max page-header">
@@ -69,7 +69,7 @@
 
                 <div class="language-settings col-xs-12 col-sm-6">
                     <div class="list-title">
-                        <strong>{{ trans("Ceres::Template.generalSelectLanguage") }}</strong>
+                        <strong>{{ trans("Walcer::Template.generalSelectLanguage") }}</strong>
                         <hr>
                     </div>
                     <shop-language-select template="#vue-shop-language-select" country-flag-prefix="flag-icon-"/>
@@ -77,7 +77,7 @@
 
                 <div class="shipping-settings col-xs-12 col-sm-6">
                     <div class="list-title">
-                        <strong>{{ trans("Ceres::Template.generalSelectShippingCountry") }}</strong>
+                        <strong>{{ trans("Walcer::Template.generalSelectShippingCountry") }}</strong>
                         <hr>
                     </div>
                     <shipping-country-select template="#vue-shipping-country-select" country-flag-prefix="flag-icon-"/>
