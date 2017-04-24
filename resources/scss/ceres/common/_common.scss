@@ -17,12 +17,15 @@
 }
 .container-max{
     @extend .container-fluid;
-    max-width: 1200px;
     z-index: auto;
 
     &.login {
         margin-top: 2rem;
     }
+}
+.no_padding {
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .page-not-found {
