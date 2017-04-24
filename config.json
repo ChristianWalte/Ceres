@@ -8,6 +8,13 @@
     },
     {
         "tab"       : "Header",
+        "key"       : "header.sprechblase",
+        "label"     : "URL to your company logo",
+        "type"      : "text",
+        "default"   : "images/ceres-logo.svg"
+    },
+    {
+        "tab"       : "Header",
         "key"       : "header.company_logo",
         "label"     : "URL to your company logo",
         "type"      : "text",
