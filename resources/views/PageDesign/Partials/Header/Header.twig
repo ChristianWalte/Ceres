@@ -8,13 +8,9 @@
 {% set lang = services.sessionStorage.getLang() %}
 
 <resource name="breadcrumbs" :data="{}"></resource>
-
 <header class="top-bar">
     <div class="container-max no_padding">
         <div class="row">
-            <div class="col-xs-6">
-                <img src="{{ plugin_path('Walcer') }}/images/Sprechblase-Startseite.png">
-            </div>
             <div class="col-xs-6">
                 {{ LayoutContainer.show("Walcer::Header.LeftSide") }}
 

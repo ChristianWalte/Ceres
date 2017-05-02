@@ -2,6 +2,33 @@
 
 {% set showDefaultHomepage = config("Walcer.default.homepage") %}
 
+{% set itemSort             = request.get("sorting") %}
+{% set orderBy              = itemSort[0] %}
+{% set variationShowType    = config("Walcer.item.variation_show_type") %}
+
+{% set rowsPerPage = config('Walcer.pagination.rowsPerPage') | split(', ') %}
+{% set columnsPerPage = config('Walcer.pagination.columnsPerPage') %}
+{% set itemsPerPage = rowsPerPage[0] * columnsPerPage %}
+
+{% if request.get("items") %}
+    {% set itemsPerPage = request.get("items") %}
+{% endif %}
+
+{% set categoryParams = {
+        'variationShowType' : config("Walcer.item.variation_show_type"),
+        'itemsPerPage'      : request.get("items") | default( itemsPerPage ),
+        'orderBy'           : itemSort,
+        'facetParams'       : request.get("facets")
+    }
+%}
+
+{% set page = request.get("page") | default(1) %}
+
+{% set paginatedResult      = services.itemLoader.loadForTemplate('Walcer::ItemList.ItemListView', itemLoaderPresets.categoryList, {'categoryId':17, 'page':page, 'items':itemsPerPage, 'facets': facetParams, 'sorting': itemSort}) %}
+
+{% set itemList             = paginatedResult.documents %}
+{% set paginationType       = config("Walcer.pagination.position") %}
+
 {% block PageBody %}
 
     {% if showDefaultHomepage == "true" %}
@@ -10,16 +37,25 @@
 
         <div style="visibility: hidden" id="currentLang">{{ currentLang }}</div>
 
-        <div class="container-max" style="margin-bottom: 2rem">
-            <div class="carousel slide" data-interval="5000" data-ride="carousel" id="carousel-example">
-                <div class="carousel-inner" id="carousel-content">
-                    <!-- dynamic add content -->
-                </div>
-                <a class="left carousel-control" href="#carousel-example" data-slide="prev"><i class="icon-prev  fa fa-angle-left"></i></a>
-                <a class="right carousel-control" href="#carousel-example" data-slide="next"><i class="icon-next fa fa-angle-right"></i></a>
-            </div>
-        </div>
         <div class="container-max">
+            <div class="row">
+                <div class="col-lg-6">
+                    Hier zum testen <br/>
+                    itemSort: {% itemSort %} <br/>
+                    orderBy: {% orderBy %} <br/>
+                    variationShowType: {% variationShowType %} <br/>
+                    rowsPerPage: {% rowsPerPage %} <br/>
+                    itemList: {% itemList %} <br/>
+                </div>
+                <div class="col-lg-6">
+                    columnsPerPage: {% columnsPerPage %} <br/>
+                    itemsPerPage: {% itemsPerPage %} <br/>
+                    categoryParams: {% categoryParams %} <br/>
+                    page: {% page %} <br/>
+                    paginatedResult: {% paginatedResult %} <br/>
+                    paginationType: {% paginationType %} <br/>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-6">
                     <h1 style="font-size: 3rem" id="welcome-text"><!-- welcome text --></h1>
@@ -44,6 +80,24 @@
                     <ul class="flex-container" id="recommended-plugins">
                         <!-- recommended plugins -->
                     </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <ul id="twig-rendered-item-list" class="product-list row grid" v-is-loading-watcher>
+                        {% for item in itemList %}
+                            <li class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                {% include "Walcer::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+    
+                    <div id="vue-rendered-item-list" style="display:none">
+                        <item-list template="#vue-item-list" :category-id="17"></item-list>
+                    </div>
+    
                 </div>
             </div>
         </div>
