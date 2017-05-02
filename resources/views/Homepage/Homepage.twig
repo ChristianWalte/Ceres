@@ -89,7 +89,7 @@
                     <ul id="twig-rendered-item-list" class="product-list row grid" v-is-loading-watcher>
                         {% for item in itemList %}
                             <li class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                {% include "Walcer::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
+                                {% include "Walcer::Category.Item.Partials.CategoryListItemHomepage" with { 'item': item } %}
                             </li>
                         {% endfor %}
                     </ul>
